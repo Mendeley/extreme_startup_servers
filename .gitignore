@@ -1,5 +1,4 @@
 *~
-
 /scala/scalatra_for_dummies/project/target
 /scala/scalatra_for_dummies/target
 /java/*/.classpath
@@ -7,3 +6,4 @@
 /java/*/.settings
 /java/*/target
 /prolog/httpd.log
+**/.idea
