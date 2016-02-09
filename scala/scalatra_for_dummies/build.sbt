@@ -2,7 +2,7 @@ name := "extreme_startup"
 
 version := "1.0"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.11.7"
 
 organization := "org.extremestartup"
 
