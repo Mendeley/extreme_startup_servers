@@ -5,7 +5,7 @@
 ```sh
 $ cd Extreme_Startup_Server
 $ ./sbt
-> container:start
+> jetty:start
 > browse
 ```
 
