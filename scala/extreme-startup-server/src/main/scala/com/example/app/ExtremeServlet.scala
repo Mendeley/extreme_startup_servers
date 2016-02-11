@@ -1,31 +1,29 @@
 package com.example.app
-import java.lang.String
+
+import org.slf4j.LoggerFactory
 
 class ExtremeServlet extends ExtremeStartupServerStack {
-
-  case class Question(id: String, question: String)
+  val logger = LoggerFactory.getLogger(getClass)
+  logger.info("Extreme Startup open for business")
 
   get("/") {
+    logger.info("Entering / handler")
+
     val q = params.get("q")
-    val query: Option[Question] = q match {
+    val maybeQuestion: Option[Question] = q match {
       case None => None
-
-      case _ => {
-        val parts = q.get.split(": ")
-        if (parts.length != 2)
-          None
-        else {
-          val (id, question) = (parts(0), parts(1))
-          Option(Question(id, question))
-        }
+      case q => {
+        logger.info("Parsing question")
+        Question(q)
       }
-
     }
-    query match {
-      case None => "無" // should be 400 bad request
 
-      case _ => "unanswerable question " + query.get.id + ": \"" + query.get.question + "\""
+    logger.info("Handling query " + maybeQuestion.get.id)
+    maybeQuestion.get.question match {
+      case "whats your name" => "example"
+      case _ => "unanswerable question " + maybeQuestion.get.id + ": \"" + maybeQuestion.get.question + "\""
     }
   }
 
+  logger.info("Exiting / handler")
 }
