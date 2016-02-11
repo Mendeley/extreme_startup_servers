@@ -7,23 +7,15 @@ class ExtremeServlet extends ExtremeStartupServerStack {
   logger.info("Extreme Startup open for business")
 
   get("/") {
-    logger.info("Entering / handler")
+    val query = Query(params.getOrElse("q", "-1: no question"))
 
-    val q = params.get("q")
-    val maybeQuestion: Option[Question] = q match {
-      case None => None
-      case q => {
-        logger.info("Parsing question")
-        Question(q)
-      }
+    val answer = query.question match {
+      case "ping" => "pong"
+      case _ => "無"
     }
 
-    logger.info("Handling query " + maybeQuestion.get.id)
-    maybeQuestion.get.question match {
-      case "whats your name" => "example"
-      case _ => "unanswerable question " + maybeQuestion.get.id + ": \"" + maybeQuestion.get.question + "\""
-    }
+    logger.info(s"""${query.id} "${query.question}" -> "$answer"""")
+
+    answer
   }
-
-  logger.info("Exiting / handler")
 }

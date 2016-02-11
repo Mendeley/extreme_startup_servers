@@ -17,7 +17,5 @@ Scalatra can be [debugged in your IDE](http://www.scalatra.org/2.2/getting-start
 
 ## TODO ##
 
-* tidy up query parsing — must be a nicer way than Question.apply(String)
 * appropriate response codes
-* configure logging
 * sort out the (rather bloated?) sbt
